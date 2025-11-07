@@ -2,7 +2,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Infinite Axis — Generador de Ángulos de Imagen</title>
+<title>Infinite Axis — Eliminador de Fondos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -45,13 +45,91 @@
   .slider:hover::-moz-range-thumb {
     background: #7c3aed;
   }
+
+  /* Modo Claro - Overrides */
+  [data-theme="light"] .sidebar-bg {
+    background-color: #f5f5f5 !important;
+    border-color: #e5e5e5 !important;
+  }
+
+  [data-theme="light"] .card-bg {
+    background-color: #ffffff !important;
+    border-color: #e5e5e5 !important;
+  }
+
+  [data-theme="light"] .neutral-card {
+    background-color: #f9fafb !important;
+    border-color: #e5e7eb !important;
+  }
+
+  [data-theme="light"] .upload-area {
+    background-color: #f9fafb !important;
+    border-color: #d1d5db !important;
+  }
+
+  [data-theme="light"] .upload-area:hover {
+    background-color: #f3f4f6 !important;
+    border-color: #9ca3af !important;
+  }
+
+  [data-theme="light"] .text-neutral-100 {
+    color: #171717 !important;
+  }
+
+  [data-theme="light"] .text-neutral-300 {
+    color: #404040 !important;
+  }
+
+  [data-theme="light"] .text-neutral-400 {
+    color: #737373 !important;
+  }
+
+  [data-theme="light"] .text-neutral-500 {
+    color: #a3a3a3 !important;
+  }
+
+  [data-theme="light"] .text-neutral-600 {
+    color: #525252 !important;
+  }
+
+  [data-theme="light"] .bg-neutral-800 {
+    background-color: #f3f4f6 !important;
+  }
+
+  [data-theme="light"] .bg-neutral-800:hover {
+    background-color: #e5e7eb !important;
+  }
+
+  [data-theme="light"] .bg-neutral-800\/50 {
+    background-color: rgba(243, 244, 246, 0.8) !important;
+  }
+
+  [data-theme="light"] .bg-neutral-900\/50 {
+    background-color: #ffffff !important;
+  }
+
+  [data-theme="light"] .bg-neutral-900\/30 {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  [data-theme="light"] .border-neutral-800 {
+    border-color: #e5e5e5 !important;
+  }
+
+  [data-theme="light"] .border-neutral-700 {
+    border-color: #d4d4d4 !important;
+  }
+
+  [data-theme="light"] footer {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
 </style>
 </head>
 <body class="min-h-full antialiased bg-neutral-950 text-neutral-100 transition-colors duration-200" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;" data-theme="dark">
 
 <div class="flex h-screen overflow-hidden">
   <!-- Sidebar -->
-  <aside class="w-80 border-r border-neutral-800 bg-neutral-900/50 flex flex-col">
+  <aside class="sidebar-bg w-80 border-r border-neutral-800 bg-neutral-900/50 flex flex-col">
     <!-- Header -->
     <div class="flex items-center justify-between px-6 py-5 border-b border-neutral-800">
       <div class="flex items-center gap-3">
@@ -67,7 +145,7 @@
     <!-- Upload Section -->
     <div class="p-6 border-b border-neutral-800">
       <label for="file-upload" class="block cursor-pointer">
-        <div id="upload-area" class="flex flex-col items-center justify-center h-40 px-4 py-6 bg-neutral-800/50 border-2 border-dashed border-neutral-700 rounded-2xl hover:bg-neutral-800 hover:border-neutral-600 transition-all">
+        <div id="upload-area" class="upload-area flex flex-col items-center justify-center h-40 px-4 py-6 bg-neutral-800/50 border-2 border-dashed border-neutral-700 rounded-2xl hover:bg-neutral-800 hover:border-neutral-600 transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10 text-neutral-500 mb-3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" x2="12" y1="3" y2="15"></line></svg>
           <p class="text-sm font-medium text-neutral-300 mb-1">Coloque la imagen aquí</p>
           <p class="text-xs text-neutral-500">- o -</p>
@@ -77,229 +155,41 @@
       </label>
       <button id="generate-btn" disabled class="mt-4 w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium bg-violet-600 text-white hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
-        Generar Ángulos
+        Remover Fondo
       </button>
     </div>
 
     <!-- Tools Section -->
     <div class="flex-1 overflow-y-auto px-6 py-6">
-      <div class="space-y-6">
-        <!-- Controles de Cámara -->
-        <div>
-          <label class="block text-sm font-medium text-neutral-400 mb-3">Controles de Cámara</label>
-          <div class="space-y-4">
-            <!-- Rotar Derecha-Izquierda -->
-            <div>
-              <label for="rotate-slider" class="block text-xs text-neutral-500 mb-2">Rotar Derecha-Izquierda (grados °)</label>
-              <input id="rotate-slider" type="range" min="-90" max="90" step="45" value="0" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>-90</span>
-                <span>-45</span>
-                <span id="rotate-value" class="text-violet-400 font-semibold">0</span>
-                <span>45</span>
-                <span>90</span>
-              </div>
-            </div>
-
-            <!-- Mover Adelante -->
-            <div>
-              <label for="forward-slider" class="block text-xs text-neutral-500 mb-2">Mover Adelante → Acercamiento</label>
-              <input id="forward-slider" type="range" min="0" max="10" step="5" value="0" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>0</span>
-                <span id="forward-value" class="text-violet-400 font-semibold">0</span>
-                <span>10</span>
-              </div>
-            </div>
-
-            <!-- Ángulo Vertical -->
-            <div>
-              <label for="vertical-slider" class="block text-xs text-neutral-500 mb-2">Ángulo Vertical (Cenital ↔ Contrapicado)</label>
-              <input id="vertical-slider" type="range" min="-1" max="1" step="1" value="0" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>-1</span>
-                <span id="vertical-value" class="text-violet-400 font-semibold">0</span>
-                <span>1</span>
-              </div>
-            </div>
-
-            <!-- Lente Gran Angular -->
-            <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-800/50 rounded-xl">
-              <span class="text-sm">Lente Gran Angular</span>
-              <label for="wide-angle" class="relative inline-flex items-center cursor-pointer">
-                <input id="wide-angle" type="checkbox" class="sr-only peer" aria-label="Lente Gran Angular">
-                <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600"></div>
-              </label>
-            </div>
-
-            <!-- Botón Restablecer -->
-            <button id="reset-btn" class="w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium bg-neutral-800 text-neutral-300 hover:bg-neutral-700 transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
-              Restablecer
-            </button>
-          </div>
-        </div>
-
-        <!-- Configuración Avanzada -->
-        <div>
-          <button id="advanced-toggle" class="w-full flex items-center justify-between text-sm font-medium text-neutral-400 mb-3 hover:text-neutral-300 transition-colors">
-            <span>Configuración Avanzada</span>
-            <svg id="advanced-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform"><path d="m6 9 6 6 6-6"></path></svg>
-          </button>
-          <div id="advanced-settings" class="hidden space-y-4">
-            <!-- Semilla -->
-            <div>
-              <label for="seed-input" class="block text-xs text-neutral-500 mb-2">Semilla (Seed)</label>
-              <input id="seed-input" type="number" min="0" max="2147483647" value="0" class="w-full px-3 py-2 bg-neutral-800/50 border border-neutral-700 rounded-lg text-sm focus:outline-none focus:border-violet-600">
-            </div>
-
-            <!-- Aleatorizar Semilla -->
-            <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-800/50 rounded-xl">
-              <span class="text-sm">Aleatorizar Semilla</span>
-              <label for="randomize-seed" class="relative inline-flex items-center cursor-pointer">
-                <input id="randomize-seed" type="checkbox" checked class="sr-only peer" aria-label="Aleatorizar Semilla">
-                <div class="w-11 h-6 bg-neutral-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-violet-600"></div>
-              </label>
-            </div>
-
-            <!-- Escala de Guía -->
-            <div>
-              <label for="guidance-slider" class="block text-xs text-neutral-500 mb-2">Escala de Guía (Guidance Scale)</label>
-              <input id="guidance-slider" type="range" min="1" max="10" step="0.1" value="1" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>1</span>
-                <span id="guidance-value" class="text-violet-400 font-semibold">1</span>
-                <span>10</span>
-              </div>
-            </div>
-
-            <!-- Pasos de Inferencia -->
-            <div>
-              <label for="steps-slider" class="block text-xs text-neutral-500 mb-2">Pasos de Inferencia</label>
-              <input id="steps-slider" type="range" min="1" max="40" value="4" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>1</span>
-                <span id="steps-value" class="text-violet-400 font-semibold">4</span>
-                <span>40</span>
-              </div>
-            </div>
-
-            <!-- Altura -->
-            <div>
-              <label for="height-slider" class="block text-xs text-neutral-500 mb-2">Altura (px)</label>
-              <input id="height-slider" type="range" min="256" max="2048" step="64" value="1024" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>256</span>
-                <span id="height-value" class="text-violet-400 font-semibold">1024</span>
-                <span>2048</span>
-              </div>
-            </div>
-
-            <!-- Anchura -->
-            <div>
-              <label for="width-slider" class="block text-xs text-neutral-500 mb-2">Anchura (px)</label>
-              <input id="width-slider" type="range" min="256" max="2048" step="64" value="1024" class="slider w-full h-2 bg-neutral-700 rounded-lg cursor-pointer">
-              <div class="flex justify-between text-xs text-neutral-600 mt-1">
-                <span>256</span>
-                <span id="width-value" class="text-violet-400 font-semibold">1024</span>
-                <span>2048</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Old Angle Selection (Hidden) -->
-        <div class="hidden">
-          <label class="block text-sm font-medium text-neutral-400 mb-3">Vistas de Ángulo</label>
-          <div class="grid grid-cols-2 gap-2">
-                        <!-- Row 1 -->
-            <button id="angle-forward" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-violet-600 hover:border-violet-500 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop" alt="Vista frontal" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Mover Adelante</span>
-            </button>
-
-            <button id="angle-left" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=200&fit=crop" alt="Vista izquierda" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Mover Izquierda</span>
-            </button>
-
-            <!-- Row 2 -->
-            <button id="angle-right" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop" alt="Vista derecha" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Mover Derecha</span>
-            </button>
-
-            <button id="angle-down" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=200&fit=crop" alt="Vista abajo" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Mover Abajo</span>
-            </button>
-
-            <!-- Row 3 -->
-            <button id="angle-rotate-left" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop" alt="Rotar izquierda" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Rotar 45° Izq.</span>
-            </button>
-
-            <button id="angle-rotate-right" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=200&fit=crop" alt="Rotar derecha" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Rotar 45° Der.</span>
-            </button>
-
-            <!-- Row 4 -->
-            <button id="angle-top" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop" alt="Vista cenital" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Vista Cenital</span>
-            </button>
-
-            <button id="angle-wide" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=200&fit=crop" alt="Ángulo amplio" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Ángulo Amplio</span>
-            </button>
-
-            <!-- Row 5 -->
-            <button id="angle-closeup" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=200&fit=crop" alt="Primer plano" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Primer Plano</span>
-            </button>
-
-            <button id="angle-back" class="flex flex-col items-center justify-center p-4 bg-neutral-800/50 rounded-xl hover:bg-neutral-800 transition-all cursor-pointer border-2 border-transparent hover:border-neutral-700 group">
-              <div class="w-full aspect-square mb-3 rounded-lg bg-neutral-900/50 overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=200&h=200&fit=crop" alt="Vista posterior" class="w-full h-full object-cover">
-              </div>
-              <span class="text-xs font-medium text-center">Vista Posterior</span>
-            </button>
-          </div>
-        </div>
-
-
-
-        <!-- Model Info -->
+      <div class="space-y-4">
+        <!-- Info sobre Background Removal - Siempre visible arriba -->
         <div class="p-4 bg-violet-500/10 border border-violet-500/20 rounded-xl">
           <div class="flex items-start gap-3">
             <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/20 text-violet-300 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path><path d="M8.5 8.5v.01"></path><path d="M16 15.5v.01"></path><path d="M12 12v.01"></path><path d="M11 17v.01"></path><path d="M7 14v.01"></path></svg>
             </div>
             <div>
-              <p class="text-xs font-medium text-violet-300 mb-1">Qwen-Image-2509</p>
-              <p class="text-xs text-neutral-400">Modelo de generación multi-ángulo</p>
+              <p class="text-xs font-medium text-violet-300 mb-1">Rembg Library</p>
+              <p class="text-xs text-neutral-400">Elimina automáticamente el fondo</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quality Settings - Se muestra cuando se carga imagen -->
+        <div id="quality-section" class="hidden">
+          <label class="block text-sm font-medium text-neutral-400 mb-3">Calidad</label>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-800/50 rounded-xl">
+              <span class="text-sm">Resolución</span>
+              <span id="resolution-value" class="text-sm font-medium text-violet-400">-</span>
+            </div>
+            <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-800/50 rounded-xl">
+              <span class="text-sm">Formato</span>
+              <span id="format-value" class="text-sm font-medium text-violet-400">PNG</span>
+            </div>
+            <div class="flex items-center justify-between px-4 py-2.5 bg-neutral-800/50 rounded-xl">
+              <span class="text-sm">Tamaño</span>
+              <span id="size-value" class="text-sm font-medium text-violet-400">-</span>
             </div>
           </div>
         </div>
@@ -313,17 +203,17 @@
     <header class="border-b border-neutral-800 bg-neutral-900/30 backdrop-blur-sm">
       <div class="flex items-center justify-between px-6 py-4">
         <div>
-          <h2 class="text-lg font-semibold tracking-tight">Vista Previa</h2>
-          <p class="text-sm text-neutral-500">Vistas de ángulos generados</p>
+          <h2 class="text-lg font-semibold tracking-tight">Preview</h2>
+          <p class="text-sm text-neutral-500">Elimina el fondo de tus imágenes</p>
         </div>
         <div class="flex items-center gap-3">
-          <button class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800 transition-colors">
+          <button id="reset-btn" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-neutral-400 hover:text-neutral-100 hover:bg-neutral-800 transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
             Reiniciar
           </button>
-          <button class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium bg-neutral-800 text-neutral-100 hover:bg-neutral-700 transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" x2="12" y1="15" y2="3"></line></svg>
-            Exportar Todo
+          <button id="guide-btn" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium bg-neutral-800 text-neutral-100 hover:bg-neutral-700 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+            Guía de Uso
           </button>
         </div>
       </div>
@@ -337,7 +227,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-10 w-10"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
           </div>
           <h3 class="text-xl font-semibold tracking-tight mb-2">Sin Imagen Cargada</h3>
-          <p class="text-sm text-neutral-500 mb-6">Sube una imagen para generar múltiples vistas de ángulos usando IA</p>
+          <p class="text-sm text-neutral-500 mb-6">Sube una imagen para remover su fondo automáticamente</p>
           <div class="flex items-center justify-center gap-4 text-xs text-neutral-600">
             <div class="flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M20 6 9 17l-5-5"></path></svg>
@@ -358,7 +248,7 @@
       <div id="preview-grid" class="hidden grid grid-cols-2 gap-6 max-w-6xl mx-auto">
         <!-- Imagen de Entrada -->
         <div>
-          <div class="bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden">
+          <div class="card-bg bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden">
             <div class="p-4 border-b border-neutral-800">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-3">
@@ -382,7 +272,7 @@
         </div>
 
         <!-- Imagen de Salida -->
-        <div id="output-image" class="bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden">
+        <div id="output-image" class="card-bg bg-neutral-900/50 border border-neutral-800 rounded-2xl overflow-hidden">
           <div class="p-4 border-b border-neutral-800">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-3">
@@ -404,7 +294,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-neutral-600 mx-auto mb-3"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg>
               <p class="text-sm text-neutral-500">Imagen generada aparecerá aquí</p>
             </div>
-            <img id="output-preview" src="" alt="Output" class="hidden w-full h-full object-cover">
+            <img id="output-preview" src="" alt="Output" class="hidden max-w-full max-h-full object-contain">
           </div>
         </div>
       </div>
@@ -419,21 +309,90 @@
             <span>Modelo Listo</span>
           </div>
           <div class="h-4 w-px bg-neutral-800"></div>
-          <span>Qwen-Image-2509-Multiple-Angles</span>
+          <span>Background Removal con rembg</span>
         </div>
         <div class="flex items-center gap-4 text-neutral-500">
           <span id="status-text">Listo para generar</span>
           <div class="h-4 w-px bg-neutral-800"></div>
-          <span>v1.0.0</span>
+          <a href="https://github.com/rodyuzuriaga/Infinite-Axis" target="_blank" rel="noopener" class="hover:text-neutral-300 transition-colors flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+            GitHub
+          </a>
         </div>
       </div>
     </footer>
   </main>
 </div>
 
+<!-- Modal de Guía de Uso -->
+<div id="guide-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center">
+  <!-- Backdrop oscurecido y difuminado -->
+  <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" id="guide-modal-backdrop"></div>
+  
+  <!-- Contenido del modal -->
+  <div class="relative bg-neutral-900 border border-neutral-700 rounded-2xl shadow-2xl max-w-md w-full mx-4 p-6 transform transition-all">
+    <!-- Header del modal -->
+    <div class="flex items-start justify-between mb-4">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+        </div>
+        <h3 class="text-lg font-semibold text-neutral-100">Guía de Uso</h3>
+      </div>
+      <button id="close-guide-modal" class="inline-flex h-8 w-8 items-center justify-center rounded-lg text-neutral-400 hover:bg-neutral-800 hover:text-neutral-100 transition-colors" title="Cerrar" aria-label="Cerrar guía de uso">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+    </div>
+    
+    <!-- Contenido -->
+    <div class="space-y-4">
+      <p class="text-sm text-neutral-300 leading-relaxed">
+        Sube una imagen y el fondo será removido automáticamente
+      </p>
+      
+      <div class="bg-neutral-800/50 rounded-xl p-4 space-y-3">
+        <div class="flex items-start gap-3">
+          <div class="flex h-6 w-6 items-center justify-center rounded-full bg-violet-500/20 text-violet-400 text-xs font-semibold flex-shrink-0 mt-0.5">1</div>
+          <div>
+            <p class="text-sm font-medium text-neutral-200">Carga tu imagen</p>
+            <p class="text-xs text-neutral-400 mt-1">Soporta formatos PNG y JPG</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="flex h-6 w-6 items-center justify-center rounded-full bg-violet-500/20 text-violet-400 text-xs font-semibold flex-shrink-0 mt-0.5">2</div>
+          <div>
+            <p class="text-sm font-medium text-neutral-200">Presiona "Remover Fondo"</p>
+            <p class="text-xs text-neutral-400 mt-1">El proceso toma solo 2-5 segundos</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <div class="flex h-6 w-6 items-center justify-center rounded-full bg-violet-500/20 text-violet-400 text-xs font-semibold flex-shrink-0 mt-0.5">3</div>
+          <div>
+            <p class="text-sm font-medium text-neutral-200">Descarga el resultado</p>
+            <p class="text-xs text-neutral-400 mt-1">Obtendrás una imagen PNG con fondo transparente</p>
+          </div>
+        </div>
+      </div>
+      
+      <button id="guide-modal-ok" class="w-full inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium bg-violet-600 text-white hover:bg-violet-500 transition-all">
+        Entendido
+      </button>
+    </div>
+  </div>
+</div>
+
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
   lucide.createIcons();
+
+  // Clean generated files on page load
+  fetch('/clean', {
+    method: 'POST'
+  }).catch(error => {
+    console.error('Error limpiando archivos al cargar:', error);
+  });
 
   // Theme Toggle
   const themeToggle = document.getElementById('theme-toggle');
@@ -464,7 +423,6 @@
   // Elements
   const fileUpload = document.getElementById('file-upload');
   const generateBtn = document.getElementById('generate-btn');
-  const resetBtn = document.getElementById('reset-btn');
   const originalPreview = document.getElementById('original-preview');
   const originalPlaceholder = document.getElementById('original-placeholder');
   const outputPreview = document.getElementById('output-preview');
@@ -474,60 +432,17 @@
   const previewEmpty = document.getElementById('preview-empty');
   const previewGrid = document.getElementById('preview-grid');
   const statusText = document.getElementById('status-text');
-
-  // Sliders
-  const rotateSlider = document.getElementById('rotate-slider');
-  const rotateValue = document.getElementById('rotate-value');
-  const forwardSlider = document.getElementById('forward-slider');
-  const forwardValue = document.getElementById('forward-value');
-  const verticalSlider = document.getElementById('vertical-slider');
-  const verticalValue = document.getElementById('vertical-value');
-  const wideAngle = document.getElementById('wide-angle');
-  const seedInput = document.getElementById('seed-input');
-  const randomizeSeed = document.getElementById('randomize-seed');
-  const guidanceSlider = document.getElementById('guidance-slider');
-  const guidanceValue = document.getElementById('guidance-value');
-  const stepsSlider = document.getElementById('steps-slider');
-  const stepsValue = document.getElementById('steps-value');
-  const heightSlider = document.getElementById('height-slider');
-  const heightValue = document.getElementById('height-value');
-  const widthSlider = document.getElementById('width-slider');
-  const widthValue = document.getElementById('width-value');
-
-  // Advanced toggle
-  const advancedToggle = document.getElementById('advanced-toggle');
-  const advancedSettings = document.getElementById('advanced-settings');
-  const advancedIcon = document.getElementById('advanced-icon');
+  
+  // Quality section elements
+  const qualitySection = document.getElementById('quality-section');
+  const resolutionValue = document.getElementById('resolution-value');
+  const formatValue = document.getElementById('format-value');
+  const sizeValue = document.getElementById('size-value');
 
   let uploadedFile = null;
+  let currentImageData = null;
 
-  // Advanced toggle
-  advancedToggle.addEventListener('click', () => {
-    advancedSettings.classList.toggle('hidden');
-    advancedIcon.style.transform = advancedSettings.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-  });
-
-  // Sliders updates
-  rotateSlider.addEventListener('input', (e) => rotateValue.textContent = e.target.value);
-  forwardSlider.addEventListener('input', (e) => forwardValue.textContent = e.target.value);
-  verticalSlider.addEventListener('input', (e) => verticalValue.textContent = e.target.value);
-  guidanceSlider.addEventListener('input', (e) => guidanceValue.textContent = e.target.value);
-  stepsSlider.addEventListener('input', (e) => stepsValue.textContent = e.target.value);
-  heightSlider.addEventListener('input', (e) => heightValue.textContent = e.target.value);
-  widthSlider.addEventListener('input', (e) => widthValue.textContent = e.target.value);
-
-  // Reset button
-  resetBtn.addEventListener('click', () => {
-    rotateSlider.value = 0;
-    forwardSlider.value = 0;
-    verticalSlider.value = 0;
-    wideAngle.checked = false;
-    rotateValue.textContent = '0';
-    forwardValue.textContent = '0';
-    verticalValue.textContent = '0';
-  });
-
-  // File upload
+  // File upload - Auto preview
   fileUpload.addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -539,11 +454,28 @@
       uploadedFile = file;
       const reader = new FileReader();
       reader.onload = (e) => {
-        originalPreview.src = e.target.result;
-        originalPreview.classList.remove('hidden');
-        originalPlaceholder.classList.add('hidden');
-        generateBtn.disabled = false;
-        statusText.textContent = 'Imagen cargada - Ajusta parámetros y presiona Generar Ángulos';
+        // Show preview immediately
+        previewEmpty.classList.add('hidden');
+        previewGrid.classList.remove('hidden');
+        
+        const img = new Image();
+        img.onload = () => {
+          // Update original preview
+          originalPreview.src = e.target.result;
+          originalPreview.classList.remove('hidden');
+          originalPlaceholder.classList.add('hidden');
+          
+          // Update quality section
+          const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+          resolutionValue.textContent = `${img.width}x${img.height}`;
+          formatValue.textContent = file.type.includes('png') ? 'PNG' : 'JPEG';
+          sizeValue.textContent = `${fileSizeMB} MB`;
+          qualitySection.classList.remove('hidden');
+          
+          generateBtn.disabled = false;
+          statusText.textContent = 'Imagen cargada - Presiona Remover Fondo';
+        };
+        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
@@ -556,51 +488,17 @@
       return;
     }
 
-    // Show grid
-    previewEmpty.classList.add('hidden');
-    previewGrid.classList.remove('hidden');
-
-    // Build prompt
-    const rotate = rotateSlider.value;
-    const forward = forwardSlider.value;
-    const vertical = verticalSlider.value;
-    const wide = wideAngle.checked;
-    
-    let prompt = `Rotar la cámara ${rotate} grados`;
-    if (forward > 0) prompt += `, mover adelante ${forward} unidades para acercamiento`;
-    if (vertical != 0) prompt += `, ángulo vertical ${vertical > 0 ? 'cenital' : 'contrapicado'} de ${Math.abs(vertical)}`;
-    if (wide) prompt += `, usar lente gran angular`;
-
-    // Get parameters
-    const seed = randomizeSeed.checked ? Math.floor(Math.random() * 2147483647) : parseInt(seedInput.value);
-    const guidance = parseFloat(guidanceSlider.value);
-    const steps = parseInt(stepsSlider.value);
-    const height = parseInt(heightSlider.value);
-    const width = parseInt(widthSlider.value);
-
-    // Update processed prompt
-    processedPrompt.textContent = `${prompt}\n\nParámetros:\n- Semilla: ${seed}\n- Escala de Guía: ${guidance}\n- Pasos: ${steps}\n- Tamaño: ${width}x${height}`;
-
     // Show processing state
     outputStatus.textContent = 'Procesando...';
     outputPreview.classList.add('hidden');
-    outputPlaceholder.innerHTML = '<div class="h-12 w-12 rounded-full border-2 border-neutral-700 border-t-violet-500 animate-spin mx-auto mb-3"></div><p class="text-sm text-neutral-500">Generando imagen...</p>';
-    statusText.textContent = 'Generando imagen con IA...';
+    outputPlaceholder.innerHTML = '<div class="h-12 w-12 rounded-full border-2 border-neutral-700 border-t-violet-500 animate-spin mx-auto mb-3"></div><p class="text-sm text-neutral-500">Removiendo fondo...</p>';
+    statusText.textContent = 'Procesando imagen...';
 
     try {
       // Send to backend
       const formData = new FormData();
       formData.append('image', uploadedFile);
-      formData.append('prompt', prompt);
-      formData.append('rotate', rotate);
-      formData.append('forward', forward);
-      formData.append('vertical', vertical);
-      formData.append('wide_angle', wide);
-      formData.append('seed', seed);
-      formData.append('guidance_scale', guidance);
-      formData.append('steps', steps);
-      formData.append('height', height);
-      formData.append('width', width);
+      formData.append('prompt', 'background removal');
 
       const response = await fetch('/generate', {
         method: 'POST',
@@ -609,31 +507,86 @@
 
       if (response.ok) {
         const result = await response.json();
+        console.log('Resultado del servidor:', result);
         
-        // Show generated image
-        outputPreview.src = result.image_url + '?t=' + Date.now();
+        // Show generated image (use base64 for preview, keep URL for download)
+        currentImageData = result.image_data;
+        console.log('Image data length:', result.image_data ? result.image_data.length : 0);
+        outputPreview.src = currentImageData;
+        outputPreview.dataset.downloadUrl = result.image_url; // Store URL for download
         outputPreview.classList.remove('hidden');
         outputPlaceholder.classList.add('hidden');
         outputStatus.textContent = 'Completado ✓';
         downloadBtn.classList.remove('hidden');
-        statusText.textContent = 'Generación completada exitosamente';
+        statusText.textContent = 'Fondo removido exitosamente';
+        
+        // Update quality info with result
+        if (result.parameters) {
+          resolutionValue.textContent = `${result.parameters.width}x${result.parameters.height}`;
+        }
       } else {
-        throw new Error('Error en la generación');
+        throw new Error('Error en el procesamiento');
       }
     } catch (error) {
       console.error('Error:', error);
       outputStatus.textContent = 'Error ✗';
-      outputPlaceholder.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-red-400 mx-auto mb-3"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg><p class="text-sm text-neutral-500">Error en generación</p>';
-      statusText.textContent = 'Error en la generación';
+      outputPlaceholder.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-16 w-16 text-red-400 mx-auto mb-3"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg><p class="text-sm text-neutral-500">Error al procesar</p>';
+      statusText.textContent = 'Error en el procesamiento';
     }
   });
 
   // Download button
   downloadBtn.addEventListener('click', () => {
-    const link = document.createElement('a');
-    link.href = outputPreview.src;
-    link.download = `generated-${Date.now()}.png`;
-    link.click();
+    // Use the stored download URL from the file
+    const downloadUrl = outputPreview.dataset.downloadUrl;
+    if (downloadUrl) {
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = `background-removed-${Date.now()}.png`;
+      link.click();
+    }
+  });
+
+  // Reset button - Clean generated files and reload page
+  const resetBtn = document.getElementById('reset-btn');
+  resetBtn.addEventListener('click', async () => {
+    try {
+      // Call backend to clean generated files
+      await fetch('/clean', {
+        method: 'POST'
+      });
+    } catch (error) {
+      console.error('Error limpiando archivos:', error);
+    }
+    // Reload page regardless of clean result
+    location.reload();
+  });
+
+  // Guide modal functionality
+  const guideBtn = document.getElementById('guide-btn');
+  const guideModal = document.getElementById('guide-modal');
+  const guideModalBackdrop = document.getElementById('guide-modal-backdrop');
+  const closeGuideModal = document.getElementById('close-guide-modal');
+  const guideModalOk = document.getElementById('guide-modal-ok');
+
+  // Open modal
+  guideBtn.addEventListener('click', () => {
+    guideModal.classList.remove('hidden');
+  });
+
+  // Close modal - backdrop click
+  guideModalBackdrop.addEventListener('click', () => {
+    guideModal.classList.add('hidden');
+  });
+
+  // Close modal - X button
+  closeGuideModal.addEventListener('click', () => {
+    guideModal.classList.add('hidden');
+  });
+
+  // Close modal - OK button
+  guideModalOk.addEventListener('click', () => {
+    guideModal.classList.add('hidden');
   });
 </script>
 
