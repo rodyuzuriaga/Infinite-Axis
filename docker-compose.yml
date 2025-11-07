@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  image-editor:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./generated:/app/generated
+    deploy:
+      replicas: 1  # Para desarrollo, ajustar para producción
+      restart_policy:
+        condition: on-failure
+    environment:
+      - FLASK_ENV=production
