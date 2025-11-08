@@ -17,8 +17,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 COPY front.html .
 
+# Crear directorio para imágenes generadas
+RUN mkdir -p generated
+
 # Exponer puerto
 EXPOSE 5000
 
 # Comando para ejecutar
-CMD ["python", "app.py"]
+CMD ["python", "-u", "app.py"]
