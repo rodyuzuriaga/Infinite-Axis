@@ -1,4 +1,4 @@
 flask
 flask-cors
 Pillow
-rembg==2.0.55
+rembg==2.0.67
