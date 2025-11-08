@@ -1,6 +1,7 @@
 # Usar imagen base de Python
 FROM python:3.9-slim
 
+# Build version: 2025-11-07-v2
 # Instalar dependencias del sistema
 RUN apt-get update && apt-get install -y \
     build-essential \
