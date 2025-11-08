@@ -13,6 +13,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# PRE-DESCARGAR MODELO REMBG (176 MB) - Se descarga UNA VEZ durante build
+RUN python -c "from rembg import remove; from PIL import Image; import io; remove(Image.new('RGB', (100, 100)))"
+
 # Copiar código
 COPY app.py .
 COPY front.html .
