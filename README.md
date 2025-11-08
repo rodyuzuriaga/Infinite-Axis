@@ -26,7 +26,7 @@ Aplicación web para eliminar fondos de imágenes automáticamente usando IA con
 ## Requisitos Previos
 
 - Docker y Docker Compose
-- Python 3.9+ (para desarrollo local)
+- Python 3.11+ (para desarrollo local)
 - Git
 
 ## Despliegue con Docker

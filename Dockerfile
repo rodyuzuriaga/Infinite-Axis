@@ -1,5 +1,5 @@
 # Usar imagen base de Python
-FROM python:3.9-slim
+FROM python:3.11-slim
 
 # Build version: 2025-11-07-v3
 # Instalar dependencias del sistema
