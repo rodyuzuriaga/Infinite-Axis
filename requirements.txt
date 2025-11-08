@@ -3,4 +3,4 @@ flask-cors
 Pillow
 rembg==2.0.67
 psutil
-onnxruntime
+onnxruntime>=1.14.0
