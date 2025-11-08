@@ -10,7 +10,11 @@ Aplicación web para eliminar fondos de imágenes automáticamente usando IA con
 
 - **Eliminación automática de fondos**: Procesa imágenes en 2-5 segundos usando rembg con modelo U2-Net
 - **Validación de archivos**: Solo acepta PNG, JPG y JPEG con validación de tipos
-- **Manejo de imágenes grandes**: Redimensionamiento automático para imágenes >2048px (mantiene proporción)
+- **Optimización de memoria inteligente**: Algoritmos matemáticos para minimizar uso de RAM (< 200MB)
+- **Redimensionamiento automático**: Imágenes grandes (>1024px) se optimizan manteniendo proporción
+- **Compresión adaptativa**: Usa ratios de compresión matemáticos para eficiencia máxima
+- **Monitoreo de memoria**: Seguimiento en tiempo real del uso de recursos
+- **Limpieza automática**: Liberación forzada de memoria y garbage collection
 - **Preview instantáneo**: Visualiza tu imagen inmediatamente al seleccionarla
 - **Información de calidad**: Muestra resolución, formato, tamaño y si fue redimensionada
 - **Interfaz moderna**: Diseño responsivo con modo oscuro/claro
@@ -101,9 +105,11 @@ La aplicación estará disponible en http://localhost:5000
 ### Límites y Validaciones
 
 - **Formatos soportados**: PNG, JPG, JPEG
-- **Tamaño máximo**: Sin límite estricto, pero imágenes >2048px se redimensionan automáticamente
-- **Procesamiento**: Optimizado para imágenes de hasta 4K con redimensionamiento inteligente
-- **Memoria**: ~200MB RAM durante procesamiento (adecuado para contenedores con 512MB)
+- **Tamaño máximo**: Sin límite estricto, optimización automática para cualquier tamaño
+- **Optimización inteligente**: Imágenes >1024px se comprimen matemáticamente manteniendo calidad
+- **Procesamiento**: Algoritmos adaptativos que ajustan chunk size según memoria disponible
+- **Memoria**: Optimizado para <200MB RAM (adecuado para contenedores con 512MB)
+- **Compresión**: Ratios matemáticos para máxima eficiencia sin pérdida perceptible de calidad
 
 ## Estructura del Proyecto
 
