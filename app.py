@@ -44,36 +44,65 @@ def generate():
     try:
         # Clean old generated files before creating new one
         clean_generated_folder()
-        
+
         file = request.files['image']
-        
+
+        # Validate file type
+        if not file or not file.filename:
+            return jsonify({'success': False, 'error': 'No file uploaded'})
+
+        allowed_extensions = {'png', 'jpg', 'jpeg'}
+        file_extension = file.filename.lower().split('.')[-1]
+        if file_extension not in allowed_extensions:
+            return jsonify({'success': False, 'error': 'Only PNG, JPG, and JPEG files are allowed'})
+
         # Read file content first for size calculation
         file_content = file.read()
         original_size_mb = len(file_content) / (1024 * 1024)
-        
+
         # Read image and convert to PNG bytes
         input_image = Image.open(BytesIO(file_content)).convert('RGBA')
-        
+
         # Get original dimensions
         original_width, original_height = input_image.size
-        
+
+        # Handle large images - resize if too big (max 2048x2048 to prevent memory issues)
+        max_size = 2048
+        if original_width > max_size or original_height > max_size:
+            print(f"🔄 Resizing large image ({original_width}x{original_height})...")
+            # Calculate new dimensions maintaining aspect ratio
+            ratio = min(max_size / original_width, max_size / original_height)
+            new_width = int(original_width * ratio)
+            new_height = int(original_height * ratio)
+            input_image = input_image.resize((new_width, new_height), Image.Resampling.LANCZOS)
+            print(f"✅ Image resized to {new_width}x{new_height}")
+
+        print("🔄 Converting image to PNG format...")
         buf = BytesIO()
         input_image.save(buf, format='PNG')
         input_bytes = buf.getvalue()
+        print("✅ Image converted to PNG")
 
+        print("🤖 Starting background removal with rembg...")
         # Remove background using rembg
         result_bytes = remove(input_bytes)
+        print("✅ Background removal completed")
+
+        print("🔄 Processing result image...")
         result_image = Image.open(BytesIO(result_bytes)).convert('RGBA')
 
         # Save to file for download
         filename = f"{uuid.uuid4()}.png"
         output_path = os.path.join(GENERATED_DIR, filename)
         result_image.save(output_path, format='PNG')
+        print(f"💾 Result saved as {filename}")
 
         # Convert result to base64 for preview
+        print("🔄 Converting to base64 for preview...")
         output_buffer = BytesIO()
         result_image.save(output_buffer, format='PNG')
         output_base64 = base64.b64encode(output_buffer.getvalue()).decode('utf-8')
+        print("✅ Base64 conversion completed")
 
         return jsonify({
             'success': True,
@@ -84,7 +113,8 @@ def generate():
                 'width': result_image.width,
                 'height': result_image.height,
                 'format': 'PNG',
-                'original_size_mb': round(original_size_mb, 2)
+                'original_size_mb': round(original_size_mb, 2),
+                'resized': original_width > max_size or original_height > max_size
             }
         })
 
