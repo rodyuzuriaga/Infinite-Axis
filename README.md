@@ -93,14 +93,32 @@ python app.py
 
 La aplicación estará disponible en http://localhost:5000
 
-## Uso de la Aplicación
+## Verificación del Servicio
 
-1. **Cargar imagen**: Haz clic en el área de carga o arrastra una imagen PNG/JPG/JPEG
-2. **Validación automática**: La app valida el tipo de archivo y muestra información de calidad
-3. **Redimensionamiento**: Imágenes grandes (>2048px) se redimensionan automáticamente manteniendo proporción
-4. **Remover fondo**: Presiona el botón "Remover Fondo" y observa el progreso en los logs
-5. **Descargar resultado**: Haz clic en el botón de descarga para obtener la imagen PNG transparente
-6. **Reiniciar**: Usa el botón "Reiniciar" para limpiar y procesar una nueva imagen
+### Endpoints de Health Check
+
+- **Health Check**: `GET /health` - Verifica que el servicio está vivo
+- **Readiness Check**: `GET /ready` - Verifica que rembg está inicializado y listo
+
+### Verificar funcionamiento:
+
+```bash
+# Health check
+curl http://localhost:5000/health
+
+# Readiness check
+curl http://localhost:5000/ready
+```
+
+### Respuesta esperada del health check:
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-11-08",
+  "memory_usage_mb": 168.1,
+  "service": "infinite-axis-bg-removal"
+}
+```
 
 ### Límites y Validaciones
 

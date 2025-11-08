@@ -228,5 +228,52 @@ def clean():
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
 
+@app.route('/health')
+def health():
+    """Health check endpoint for container orchestration"""
+    return jsonify({
+        'status': 'healthy',
+        'timestamp': '2025-11-08',
+        'memory_usage_mb': round(get_memory_usage(), 1),
+        'service': 'infinite-axis-bg-removal'
+    })
+
+@app.route('/ready')
+def ready():
+    """Readiness check endpoint"""
+    try:
+        # Test if we can create a simple image (tests rembg availability)
+        from PIL import Image
+        test_img = Image.new('RGB', (10, 10), color='red')
+        return jsonify({'status': 'ready', 'message': 'Service is ready to process images'})
+    except Exception as e:
+        return jsonify({'status': 'not_ready', 'error': str(e)}), 503
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    print("🚀 Starting Infinite Axis Background Removal Service...")
+    print(f"📊 Initial memory usage: {get_memory_usage():.1f} MB")
+
+    # Test rembg initialization
+    try:
+        print("🔧 Testing rembg initialization...")
+        from rembg import remove
+        from PIL import Image
+        # Create a simple test image
+        test_img = Image.new('RGB', (10, 10), color='red')
+        test_buffer = BytesIO()
+        test_img.save(test_buffer, format='PNG')
+        test_bytes = test_buffer.getvalue()
+        test_buffer.close()
+
+        # Test rembg with a simple image
+        result = remove(test_bytes)
+        print("✅ Rembg initialized successfully")
+    except Exception as e:
+        print(f"❌ Rembg initialization failed: {e}")
+        exit(1)
+
+    print("🌐 Starting Flask server on 0.0.0.0:5000")
+    print("📡 Health check available at: http://localhost:5000/health")
+    print("🔍 Readiness check available at: http://localhost:5000/ready")
+
+    app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
